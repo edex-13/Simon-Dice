@@ -1,0 +1,83 @@
+* {
+   padding: 0;
+   margin: 0;
+}
+body {
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.container {
+   width: 450px;
+   height: 450px;
+   border-radius: 50%;
+   position: relative;
+   overflow: hidden;
+}
+.colores {
+   width: 310px;
+   height: 310px;
+}
+.container__colores{
+   width: 50%;
+   height: 50%;
+   position: absolute;
+}
+
+.colores--colorAzul {
+   top: 0;
+   left: 0;
+   background-color: #3B91FF;
+}
+.active--colorAzul{
+   background-color: #66AAFF;
+}
+.colores--colorRojo {
+   top: 0;
+   right: 0;
+   background-color: #FF3B3B;
+}
+.active--colorRojo{
+   top: 0;
+   right: 0;
+   background-color: #FF6767;
+}
+
+.colores--colorVerde {
+   bottom: 0;
+   left: 0;
+   background-color: #65FF3B;
+}
+.active--colorVerde{
+   background-color: #87FE66;
+}
+.colores--colorAmarillo {
+   bottom: 0;
+   right: 0;
+   background-color: #FFE73B;
+}
+.active--colorAmarillo{
+   background-color: #FEEC68;
+}
+.btnJuego {
+   font-size: 30px;
+   letter-spacing: 5px;
+   width: 70%;
+   height: 24%;
+   background-color: #c8c8c8;
+   border: 1px solid #acabab;
+   position: absolute;
+   top: calc(50% - 12%);
+   left: calc(50% - 35%);
+   box-shadow: 10px 10px 60px 17px rgba(0,0,0,0.5);
+   outline: none;
+   cursor: pointer;
+
+}
+.btnJuego--oculto{
+   display: none;
+}
+.btnJuego:hover{
+   background-color: #c0c0c0;
+}
