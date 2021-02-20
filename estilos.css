@@ -1,3 +1,14 @@
+:root {
+   --celeste:#21a2ad;
+   --violeta: #b32fd1;
+   --naranja: #e08f32;
+   --verde:   #66af46;
+
+   --celeste-light: #81cfd8;
+   --violeta-light: #d462eb;
+   --naranja-light: #f5c186;
+   --verde-light: #b8d462;
+}
 * {
    padding: 0;
    margin: 0;
@@ -5,8 +16,14 @@
 body {
    height: 100vh;
    display: flex;
+   flex-direction: column;
    align-items: center;
    justify-content: center;
+   font-family: 'Courier New', Courier, monospace;
+}
+.titulo{
+   margin: 40px;
+   font-size: 50px;
 }
 .container {
    width: 450px;
@@ -19,47 +36,46 @@ body {
    width: 310px;
    height: 310px;
 }
-.container__colores{
+.container__colores {
    width: 50%;
    height: 50%;
    position: absolute;
 }
 
-.colores--colorAzul {
-   top: 0;
+.colores--colorCeleste {
+   bottom: 0;
    left: 0;
-   background-color: #3B91FF;
+   background-color: var(--celeste);
 }
-.active--colorAzul{
-   background-color: #66AAFF;
+.colores--colorCeleste .active {
+   background-color: var(--celeste-light);
 }
-.colores--colorRojo {
-   top: 0;
-   right: 0;
-   background-color: #FF3B3B;
+
+.colores--colorVioleta {
+   background-color: var(--violeta);
 }
-.active--colorRojo{
-   top: 0;
-   right: 0;
-   background-color: #FF6767;
+.colores--colorVioleta.active {
+   background-color: var(--violeta-light);
 }
 
 .colores--colorVerde {
-   bottom: 0;
-   left: 0;
-   background-color: #65FF3B;
+   top: 0;
+   right: 0;
+   background-color: var(--verde);
 }
-.active--colorVerde{
-   background-color: #87FE66;
+.colores--colorVerde.active{
+   background-color: var(--verde-light);
 }
-.colores--colorAmarillo {
+
+.colores--colorNaranja {
    bottom: 0;
    right: 0;
-   background-color: #FFE73B;
+   background-color: var(--naranja);
 }
-.active--colorAmarillo{
-   background-color: #FEEC68;
+.colores--colorNaranja.active {
+   background-color: var(--naranja-light);
 }
+
 .btnJuego {
    font-size: 30px;
    letter-spacing: 5px;
@@ -70,14 +86,13 @@ body {
    position: absolute;
    top: calc(50% - 12%);
    left: calc(50% - 35%);
-   box-shadow: 10px 10px 60px 17px rgba(0,0,0,0.5);
+   box-shadow: 0px 0px 90px rgba(0, 0, 0, 0.7);
    outline: none;
-   cursor: pointer;
-
 }
-.btnJuego--oculto{
+.btnJuego--oculto {
    display: none;
 }
-.btnJuego:hover{
+.btnJuego:hover {
+   cursor: pointer;
    background-color: #c0c0c0;
 }
