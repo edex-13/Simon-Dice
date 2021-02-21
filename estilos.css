@@ -1,8 +1,8 @@
 :root {
-   --celeste:#21a2ad;
-   --violeta: #b32fd1;
-   --naranja: #e08f32;
-   --verde:   #66af46;
+   --celeste:#2bbfcc;
+   --violeta: #b035cc;
+   --naranja: #ec9129;
+   --verde:   #69b946;
 
    --celeste-light: #81cfd8;
    --violeta-light: #d462eb;
@@ -97,5 +97,5 @@ body {
    background-color: #c0c0c0;
 }
 #nivel{
-   margin: 30px;
+   margin: 25px;
 }
