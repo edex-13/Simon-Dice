@@ -5,7 +5,7 @@ const BTN_COLOR_CELESTE = document.getElementById('btn__colorCeleste');
 const BTN_COLOR_NARANJA = document.getElementById('btn__colorNaranja');
 
 const nivelMaximo = 10;
-let nivelActual = 0;
+let nivelActual = 1;
 
 let secuenciaAletoria = generarSecuenciaAleatoria();
 
@@ -26,6 +26,7 @@ function iniciarJuego() {
 function nuevoNivel() {
    nivelActual++;
    mostrarSecuencia();
+   setTimeout(() => recibirSecuenciaUsuario(), 1000 * (nivelActual + 1));
 }
 
 function generarSecuenciaAleatoria() {
@@ -69,4 +70,19 @@ function apagarColor(colorIluminado) {
    if (colorIluminado == naranja) {
       BTN_COLOR_NARANJA.classList.remove('active');
    }
+}
+
+function recibirSecuenciaUsuario() {
+   BTN_COLOR_VIOLETA.addEventListener('click', () => {
+      console.log(violeta);
+   });
+   BTN_COLOR_VERDE.addEventListener('click', () => {
+      console.log(verde);
+   });
+   BTN_COLOR_CELESTE.addEventListener('click', () => {
+      console.log(celeste);
+   });
+   BTN_COLOR_NARANJA.addEventListener('click', () => {
+      console.log(naranja);
+   });
 }
