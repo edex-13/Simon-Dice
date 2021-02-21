@@ -3,27 +3,29 @@ const BTN_COLOR_VIOLETA = document.getElementById('btn__colorVioleta');
 const BTN_COLOR_VERDE = document.getElementById('btn__colorVerde');
 const BTN_COLOR_CELESTE = document.getElementById('btn__colorCeleste');
 const BTN_COLOR_NARANJA = document.getElementById('btn__colorNaranja');
+
 const nivelMaximo = 10;
+let nivelActual = 0;
 
-let nivelActual = 1;
-let colorANumero = {
-   violeta: 0,
-   verde: 1,
-   celeste: 2,
-   naranja: 3,
-};
+let secuenciaAletoria = generarSecuenciaAleatoria();
 
+// variables que guardar el valor numerico de cada color
+let violeta = 0;
+let verde = 1;
+let celeste = 2;
+let naranja = 3;
 
 BTN_JUEGO.addEventListener('click', () => {
-   console.log('Juego Iniciado');
    iniciarJuego();
 });
 
 function iniciarJuego() {
    BTN_JUEGO.classList.add('btnJuego--oculto');
-   let secuenciaAletoria = generarSecuenciaAleatoria();
-   mostrarSecuencia(secuenciaAletoria);
-   console.log(secuenciaAletoria);
+   nuevoNivel();
+}
+function nuevoNivel() {
+   nivelActual++;
+   mostrarSecuencia();
 }
 
 function generarSecuenciaAleatoria() {
@@ -34,37 +36,37 @@ function generarSecuenciaAleatoria() {
    return secuenciaAletoria;
 }
 
-function mostrarSecuencia(secuenciaAletoria) {
+function mostrarSecuencia() {
    for (let i = 0; i < nivelActual; i++) {
       setTimeout(() => iluminarColor(secuenciaAletoria[i]), 1000 * i);
    }
 }
 function iluminarColor(colorIluminado) {
-   if (colorIluminado == colorANumero.violeta) {
+   if (colorIluminado == violeta) {
       BTN_COLOR_VIOLETA.classList.add('active');
    }
-   if (colorIluminado == colorANumero.verde) {
+   if (colorIluminado == verde) {
       BTN_COLOR_VERDE.classList.add('active');
    }
-   if (colorIluminado == colorANumero.celeste) {
+   if (colorIluminado == celeste) {
       BTN_COLOR_CELESTE.classList.add('active');
    }
-   if (colorIluminado == colorANumero.naranja) {
+   if (colorIluminado == naranja) {
       BTN_COLOR_NARANJA.classList.add('active');
    }
    setTimeout(() => apagarColor(colorIluminado), 350);
 }
 function apagarColor(colorIluminado) {
-   if (colorIluminado == colorANumero.violeta) {
+   if (colorIluminado == violeta) {
       BTN_COLOR_VIOLETA.classList.remove('active');
    }
-   if (colorIluminado == colorANumero.verde) {
+   if (colorIluminado == verde) {
       BTN_COLOR_VERDE.classList.remove('active');
    }
-   if (colorIluminado == colorANumero.celeste) {
+   if (colorIluminado == celeste) {
       BTN_COLOR_CELESTE.classList.remove('active');
    }
-   if (colorIluminado == colorANumero.naranja) {
+   if (colorIluminado == naranja) {
       BTN_COLOR_NARANJA.classList.remove('active');
    }
 }
