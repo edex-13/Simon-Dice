@@ -29,6 +29,7 @@ function nuevoNivel() {
       setTimeout(() => iluminarColor(secuenciaAletoria[i]), 1000 * i);
    }
    setTimeout(() => recibirSecuenciaUsuario(), 1000 * nivelActual);
+   secuenciaUsuario = new Array(0);
 }
 
 function generarSecuenciaAleatoria() {
@@ -52,7 +53,7 @@ function iluminarColor(colorIluminado) {
    if (colorIluminado == naranja) {
       BTN_COLOR_NARANJA.classList.add('active');
    }
-   setTimeout(() => apagarColor(colorIluminado), 350);
+   setTimeout(() => apagarColor(colorIluminado), 250);
 }
 function apagarColor(colorIluminado) {
    if (colorIluminado == violeta) {
@@ -76,23 +77,25 @@ function recibirSecuenciaUsuario() {
    BTN_COLOR_NARANJA.addEventListener('click', iluminarSecuenciaNa);
 }
 function iluminarSecuenciaVi() {
-   iluminarColor(violeta);
+   // iluminarColor(violeta);
    guardarSecuenciaUsuario(violeta);
 }
 function iluminarSecuenciaVe() {
-   iluminarColor(verde);
+   // iluminarColor(verde);
    guardarSecuenciaUsuario(verde);
 }
 function iluminarSecuenciaCe() {
-   iluminarColor(celeste);
+   // iluminarColor(celeste);
    guardarSecuenciaUsuario(celeste);
 }
 function iluminarSecuenciaNa() {
-   iluminarColor(naranja);
+   // iluminarColor(naranja);
    guardarSecuenciaUsuario(naranja);
 }
 
+
 let secuenciaUsuario = new Array(0);
+
 function guardarSecuenciaUsuario(color) {
    if (secuenciaUsuario.length < nivelActual) {
       secuenciaUsuario.push(color);
@@ -113,22 +116,21 @@ function verificar() {
          verificador *= false;
       }
    }
-   console.log(verificador)
+   console.log(verificador);
    if (verificador) {
       if (nivelActual == nivelMaximo) {
          ganar();
+      } else {
+         nuevoNivel();
       }
-      else{
-         nuevoNivel()
-      }
-   } 
-   if(!verificador) {
+   }
+   if (!verificador) {
       perder();
    }
 }
 function ganar() {
-   console.log("ganar")
+   console.log('ganar');
 }
 function perder() {
-   console.log("perder")
+   console.log('perder');
 }
