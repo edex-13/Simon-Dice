@@ -24,11 +24,14 @@ function iniciarJuego() {
    nuevoNivel();
 }
 function nuevoNivel() {
+   if (nivelActual >= 1) {
+      setTimeout(() => alert("Pasaste Al siguiente nivel"), 1000)
+   }
    nivelActual++;
    for (let i = 0; i < nivelActual; i++) {
-      setTimeout(() => iluminarColor(secuenciaAletoria[i]), 1000 * i);
+      setTimeout(() => iluminarColor(secuenciaAletoria[i]), 1000 * (i+2));
    }
-   setTimeout(() => recibirSecuenciaUsuario(), 1000 * nivelActual);
+   setTimeout(() => recibirSecuenciaUsuario(), 1000 * (nivelActual-1));
    secuenciaUsuario = new Array(0);
 }
 
@@ -53,7 +56,7 @@ function iluminarColor(colorIluminado) {
    if (colorIluminado == naranja) {
       BTN_COLOR_NARANJA.classList.add('active');
    }
-   setTimeout(() => apagarColor(colorIluminado), 250);
+   setTimeout(() => apagarColor(colorIluminado), 350);
 }
 function apagarColor(colorIluminado) {
    if (colorIluminado == violeta) {
@@ -77,22 +80,21 @@ function recibirSecuenciaUsuario() {
    BTN_COLOR_NARANJA.addEventListener('click', iluminarSecuenciaNa);
 }
 function iluminarSecuenciaVi() {
-   // iluminarColor(violeta);
+   iluminarColor(violeta);
    guardarSecuenciaUsuario(violeta);
 }
 function iluminarSecuenciaVe() {
-   // iluminarColor(verde);
+   iluminarColor(verde);
    guardarSecuenciaUsuario(verde);
 }
 function iluminarSecuenciaCe() {
-   // iluminarColor(celeste);
+   iluminarColor(celeste);
    guardarSecuenciaUsuario(celeste);
 }
 function iluminarSecuenciaNa() {
-   // iluminarColor(naranja);
+   iluminarColor(naranja);
    guardarSecuenciaUsuario(naranja);
 }
-
 
 let secuenciaUsuario = new Array(0);
 
@@ -129,8 +131,14 @@ function verificar() {
    }
 }
 function ganar() {
-   console.log('ganar');
+   swal('Ganaste', 'Muy bien has ganado', 'success');
+}
+function ganoNivel() {
+   swal('Pasaste el nivel ' + nivelActual, 'Muy bien has pasado al siguiente nivel', 'success');
 }
 function perder() {
-   console.log('perder');
+   swal('Oops Perdiste', 'Vuelve a intentar', 'error');
+   BTN_JUEGO.classList.remove('btnJuego--oculto');
+   nivelActual = 0
+   verificador = true
 }
