@@ -1,5 +1,9 @@
 # Simon-Dice
-Este es un proyecto hecho en: **HTML** **CSS** Y **JS** con el fin de repasar los conceptos basicos del lenguaje javaScritp , fue hecho con mis conocimientos adquieridos en **Platzi**
 
+Este es un proyecto hecho en: **HTML** **CSS** Y **JS** con el fin de repasar los conceptos basicos del lenguaje javaScript , fue hecho con mis conocimientos adquieridos en **Platzi**
 
-[![imagen](Imagen del juego "imagen")](imagen/imagenJuego.jpg)
+<img
+    src="imagen/imagenJuego.JPG"
+    alt="imagen Del Juego"
+    width="800"
+/>
