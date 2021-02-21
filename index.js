@@ -144,7 +144,7 @@ function ganar() {
 function ganoNivel() {
    swal('Buen trabajo!', `Haz Pasado el nivel ${nivelActual+1}`, 'success').then(function () {
       console.log('nuevoNivel');
-      Mostrarnivel.innerHTML= `nivel actual ${nivelActual+1}`
+      Mostrarnivel.innerHTML= `Nivel actual ${nivelActual+1}`
       setTimeout(() => {
          nuevoNivel();
       }, 1000);
