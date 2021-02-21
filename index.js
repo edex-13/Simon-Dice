@@ -4,9 +4,9 @@ const BTN_COLOR_VERDE = document.getElementById('btn__colorVerde');
 const BTN_COLOR_CELESTE = document.getElementById('btn__colorCeleste');
 const BTN_COLOR_NARANJA = document.getElementById('btn__colorNaranja');
 
-const nivelMaximo = 10;
-let nivelActual = 1;
-
+const nivelMaximo = 5;
+let nivelActual = 0;
+let verificador = true;
 let secuenciaAletoria = generarSecuenciaAleatoria();
 
 // variables que guardar el valor numerico de cada color
@@ -25,8 +25,10 @@ function iniciarJuego() {
 }
 function nuevoNivel() {
    nivelActual++;
-   mostrarSecuencia();
-   setTimeout(() => recibirSecuenciaUsuario(), 1000 * (nivelActual + 1));
+   for (let i = 0; i < nivelActual; i++) {
+      setTimeout(() => iluminarColor(secuenciaAletoria[i]), 1000 * i);
+   }
+   setTimeout(() => recibirSecuenciaUsuario(), 1000 * nivelActual);
 }
 
 function generarSecuenciaAleatoria() {
@@ -37,11 +39,6 @@ function generarSecuenciaAleatoria() {
    return secuenciaAletoria;
 }
 
-function mostrarSecuencia() {
-   for (let i = 0; i < nivelActual; i++) {
-      setTimeout(() => iluminarColor(secuenciaAletoria[i]), 1000 * i);
-   }
-}
 function iluminarColor(colorIluminado) {
    if (colorIluminado == violeta) {
       BTN_COLOR_VIOLETA.classList.add('active');
@@ -73,16 +70,65 @@ function apagarColor(colorIluminado) {
 }
 
 function recibirSecuenciaUsuario() {
-   BTN_COLOR_VIOLETA.addEventListener('click', () => {
-      console.log(violeta);
-   });
-   BTN_COLOR_VERDE.addEventListener('click', () => {
-      console.log(verde);
-   });
-   BTN_COLOR_CELESTE.addEventListener('click', () => {
-      console.log(celeste);
-   });
-   BTN_COLOR_NARANJA.addEventListener('click', () => {
-      console.log(naranja);
-   });
+   BTN_COLOR_VIOLETA.addEventListener('click', iluminarSecuenciaVi);
+   BTN_COLOR_VERDE.addEventListener('click', iluminarSecuenciaVe);
+   BTN_COLOR_CELESTE.addEventListener('click', iluminarSecuenciaCe);
+   BTN_COLOR_NARANJA.addEventListener('click', iluminarSecuenciaNa);
+}
+function iluminarSecuenciaVi() {
+   iluminarColor(violeta);
+   guardarSecuenciaUsuario(violeta);
+}
+function iluminarSecuenciaVe() {
+   iluminarColor(verde);
+   guardarSecuenciaUsuario(verde);
+}
+function iluminarSecuenciaCe() {
+   iluminarColor(celeste);
+   guardarSecuenciaUsuario(celeste);
+}
+function iluminarSecuenciaNa() {
+   iluminarColor(naranja);
+   guardarSecuenciaUsuario(naranja);
+}
+
+let secuenciaUsuario = new Array(0);
+function guardarSecuenciaUsuario(color) {
+   if (secuenciaUsuario.length < nivelActual) {
+      secuenciaUsuario.push(color);
+   }
+   if (secuenciaUsuario.length == nivelActual) {
+      verificar();
+   }
+}
+function verificar() {
+   BTN_COLOR_VIOLETA.removeEventListener('click', iluminarSecuenciaVi);
+   BTN_COLOR_VERDE.removeEventListener('click', iluminarSecuenciaVe);
+   BTN_COLOR_CELESTE.removeEventListener('click', iluminarSecuenciaCe);
+   BTN_COLOR_NARANJA.removeEventListener('click', iluminarSecuenciaNa);
+   for (let i = 0; i < nivelActual; i++) {
+      if (secuenciaUsuario[i] == secuenciaAletoria[i]) {
+         verificador *= true;
+      } else {
+         verificador *= false;
+      }
+   }
+   console.log(verificador)
+   if (verificador) {
+      if (nivelActual == nivelMaximo) {
+         ganar();
+      }
+      else{
+         nuevoNivel()
+      }
+   } 
+   if(!verificador) {
+      perder();
+   }
+}
+function ganar() {
+   console.log("ganar")
+}
+function perder() {
+   console.log("perder")
 }
