@@ -3,8 +3,9 @@ const BTN_COLOR_VIOLETA = document.getElementById('btn__colorVioleta');
 const BTN_COLOR_VERDE = document.getElementById('btn__colorVerde');
 const BTN_COLOR_CELESTE = document.getElementById('btn__colorCeleste');
 const BTN_COLOR_NARANJA = document.getElementById('btn__colorNaranja');
+const Mostrarnivel = document.getElementById('nivel')
 
-const nivelMaximo = 5;
+const nivelMaximo = 10;
 let nivelActual = 0;
 let verificador = true;
 let secuenciaAletoria = generarSecuenciaAleatoria();
@@ -24,14 +25,11 @@ function iniciarJuego() {
    nuevoNivel();
 }
 function nuevoNivel() {
-   if (nivelActual >= 1) {
-      setTimeout(() => alert("Pasaste Al siguiente nivel"), 1000)
-   }
    nivelActual++;
    for (let i = 0; i < nivelActual; i++) {
-      setTimeout(() => iluminarColor(secuenciaAletoria[i]), 1000 * (i+2));
+      setTimeout(() => iluminarColor(secuenciaAletoria[i]), 1000 * i);
    }
-   setTimeout(() => recibirSecuenciaUsuario(), 1000 * (nivelActual-1));
+   setTimeout(() => recibirSecuenciaUsuario(), 1000 * (nivelActual - 1));
    secuenciaUsuario = new Array(0);
 }
 
@@ -56,7 +54,7 @@ function iluminarColor(colorIluminado) {
    if (colorIluminado == naranja) {
       BTN_COLOR_NARANJA.classList.add('active');
    }
-   setTimeout(() => apagarColor(colorIluminado), 350);
+   setTimeout(() => apagarColor(colorIluminado), 450);
 }
 function apagarColor(colorIluminado) {
    if (colorIluminado == violeta) {
@@ -123,22 +121,40 @@ function verificar() {
       if (nivelActual == nivelMaximo) {
          ganar();
       } else {
-         nuevoNivel();
+         setTimeout(() => {
+            ganoNivel();
+         }, 1000);
       }
    }
    if (!verificador) {
-      perder();
+      setTimeout(() => {
+         perder();
+      }, 1000);
    }
 }
 function ganar() {
    swal('Ganaste', 'Muy bien has ganado', 'success');
+   BTN_JUEGO.classList.remove('btnJuego--oculto');
+   nivelActual = 0;
+   verificador = true;
+   Mostrarnivel.innerHTML= ``
+
 }
+
 function ganoNivel() {
-   swal('Pasaste el nivel ' + nivelActual, 'Muy bien has pasado al siguiente nivel', 'success');
+   swal('Buen trabajo!', `Haz Pasado el nivel ${nivelActual+1}`, 'success').then(function () {
+      console.log('nuevoNivel');
+      Mostrarnivel.innerHTML= `nivel actual ${nivelActual+1}`
+      setTimeout(() => {
+         nuevoNivel();
+      }, 1000);
+   });
 }
 function perder() {
    swal('Oops Perdiste', 'Vuelve a intentar', 'error');
    BTN_JUEGO.classList.remove('btnJuego--oculto');
-   nivelActual = 0
-   verificador = true
+   nivelActual = 0;
+   verificador = true;
+   Mostrarnivel.innerHTML= ` `
+
 }
